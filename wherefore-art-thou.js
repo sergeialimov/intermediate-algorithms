@@ -1,24 +1,21 @@
-function whatIsInAName(collection, obj2) {
-  const arr = [];
-  let keys = Object.keys(obj2);
-  
-  collection.forEach((obj) => {
-    let result = 0;
-    keys.forEach((key) => {
-      if (obj[key] === obj2[key]) {
-        result++;
-      }
-    })
-    
-    if (result >= keys.length) {
-      arr.push(obj);
-    }
-  });
-  return arr;
-};
+function whatIsInAName(collection, source) {
+  var srcKeys = Object.keys(source);
 
-whatIsInAName([
+  return collection.filter((obj) => {
+    for(var i = 0; i < srcKeys.length; i++) {
+      if(obj[srcKeys[i]] !== source[srcKeys[i]]) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
+console.log(
+  whatIsInAName([
+  
   { "apple": 1, "bat": 2, "cookie": 2 },
-  { "apple": 1, "bat": 2, "cookie": 2 }
+  { "apple": 13, "bat": 2,"cookie": 2 }
 
 ], { "apple": 1, "bat": 2 })
+);
