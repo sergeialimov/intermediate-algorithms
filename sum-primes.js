@@ -8,12 +8,10 @@ function sumPrimes(num) {
     return num !== 1 && num !== 0;
   }
   
-  let sum = 0;
-  for (let i = 0; i <= num; i += 1) {
-    if (isPrime(i)) {
-      sum += i;
-    }
-  }
-  return sum;
+  let arr = Array.from({ length: num + 1 }, (v, k) => k ).slice(2);
+  
+  return arr.filter(x => isPrime(x))
+    .reduce((accumulator, currentValue) => accumulator + currentValue);
 }
 
+console.log(sumPrimes(10));
